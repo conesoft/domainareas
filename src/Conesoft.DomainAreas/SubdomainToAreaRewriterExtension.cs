@@ -10,7 +10,7 @@ namespace Conesoft.DomainAreas
 
     public static class SubdomainToAreaRewriterExtension
     {
-        public static void UseSubdomainToAreaRewriter(this IApplicationBuilder app, bool withCascadingStaticFiles = false)
+        public static void UseSubdomainToAreaRewriter(this IApplicationBuilder app, string globalPrefix = "", bool withCascadingStaticFiles = false)
         {
             if(withCascadingStaticFiles)
             {
@@ -18,20 +18,23 @@ namespace Conesoft.DomainAreas
             }
 
             var rewriter = new RewriteOptions();
-            rewriter.Add(new SubdomainToAreaRewriter());
+            rewriter.Add(new SubdomainToAreaRewriter(globalPrefix));
             app.UseRewriter(rewriter);
         }
 
         private static void UseStaticFilesForSubdomains(this IApplicationBuilder app)
         {
             var env = app.ApplicationServices.GetService(typeof(IWebHostEnvironment)) as IWebHostEnvironment;
-            foreach (var directory in (Files.Directory.From(env.ContentRootPath) / "Areas").Directories.Where(d => d.Directories.Any(sd => sd.Name == "wwwroot")))
+            if (env != null)
             {
-                app.UseMiddleware<AspNetCore.StaticFiles.StaticFileMiddleware>(Options.Create(new AspNetCore.Builder.StaticFileOptions
+                foreach (var directory in (Files.Directory.From(env.ContentRootPath) / "Areas").Directories.Where(d => d.Directories.Any(sd => sd.Name == "wwwroot")))
                 {
-                    ShouldSkip = ctx => ctx.Context.Request.Host.Host.Split(':').First() != directory.Name && ctx.Context.Request.Host.Host.Split(':').First() != directory.Name + ".localhost",
-                    FileProvider = new PhysicalFileProvider((directory / "wwwroot").Path)
-                }));
+                    app.UseMiddleware<AspNetCore.StaticFiles.StaticFileMiddleware>(Options.Create(new AspNetCore.Builder.StaticFileOptions
+                    {
+                        ShouldSkip = ctx => ctx.Context.Request.Host.Host.Split(':').First() != directory.Name && ctx.Context.Request.Host.Host.Split(':').First() != directory.Name + ".localhost",
+                        FileProvider = new PhysicalFileProvider((directory / "wwwroot").Path)
+                    }));
+                }
             }
 
             app.UseStaticFiles();
