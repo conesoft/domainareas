@@ -14,11 +14,11 @@ namespace Conesoft.DomainAreas
         public void ApplyRule(RewriteContext context)
         {
             var host = context.HttpContext.Request.Host.Host;
-            var path = context.HttpContext.Request.Path.Value;
+            var path = context.HttpContext.Request.Path.Value ?? "/";
 
             if (globalPrefix == "" || host.StartsWith(globalPrefix + ".") == false)
             {
-                if (path.StartsWith("/_blazor") == false)
+                if (path.StartsWith("/_blazor") == false && path.StartsWith("/" + globalPrefix + "/") == false)
                 {
                     context.HttpContext.Request.Path = "/" + host.Replace(".localhost", "") + path;
                 }
