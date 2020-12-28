@@ -24,7 +24,7 @@ namespace Conesoft.DomainAreas
                 }
                 if(path.StartsWith($"/{globalPrefix}/"))
                 {
-                    context.HttpContext.Request.Path = path[($"/{globalPrefix}/").Length..];
+                    context.HttpContext.Request.Path = path[$"/{globalPrefix}".Length..];
                 }
             }
         }
