@@ -18,9 +18,13 @@ namespace Conesoft.DomainAreas
 
             if (globalPrefix == "" || host.StartsWith(globalPrefix + ".") == false)
             {
-                if (path.StartsWith("/_blazor") == false && path.StartsWith("/" + globalPrefix + "/") == false)
+                if (path.StartsWith("/_blazor") == false && path.StartsWith($"/{globalPrefix}/") == false)
                 {
                     context.HttpContext.Request.Path = "/" + host.Replace(".localhost", "") + path;
+                }
+                if(path.StartsWith($"/{globalPrefix}/"))
+                {
+                    context.HttpContext.Request.Path = path[($"/{globalPrefix}/").Length..];
                 }
             }
         }
