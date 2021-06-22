@@ -4,11 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Conesoft.DomainAreas</RootNamespace>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <Authors>davepermen</Authors>
     <Company>Conesoft</Company>
     <PackageIcon>Conesoft.forNuget.x256.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/conesoft/files</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/conesoft/domainareas</PackageProjectUrl>
   </PropertyGroup>
   
   <ItemGroup>
