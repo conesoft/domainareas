@@ -4,16 +4,22 @@
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Conesoft.DomainAreas</RootNamespace>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Authors>davepermen</Authors>
     <Company>Conesoft</Company>
+    <PackageIcon>Conesoft.forNuget.x256.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/conesoft/files</PackageProjectUrl>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="Conesoft.forNuget.x256.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Conesoft.Files" Version="1.1.2" />
+    <PackageReference Include="Conesoft.Files" Version="1.5.9" />
   </ItemGroup>
 </Project>
