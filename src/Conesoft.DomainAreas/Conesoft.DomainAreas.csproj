@@ -4,15 +4,24 @@
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Conesoft.DomainAreas</RootNamespace>
-    <Version>1.0.6</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.0.7</Version>
     <Authors>davepermen</Authors>
     <Company>Conesoft</Company>
     <PackageIcon>Conesoft.forNuget.x256.png</PackageIcon>
     <PackageProjectUrl>https://github.com/conesoft/domainareas</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>ASP.NET Core request Rewriter, allowing Areas to be accessed as domains</Description>
+    <PackageTags>library dotnet-core</PackageTags>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <None Include="Conesoft.forNuget.x256.png" Pack="true" PackagePath=""/>
+    <None Include="Conesoft.forNuget.x256.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
